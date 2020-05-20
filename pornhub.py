@@ -45,11 +45,11 @@ adj = list()
   #if len(i.strip())>0: adj.append(i.strip())
 #f.close()
 print("Loading Nouns... --Generator")
-#noun = list()
-#f = open("noun.txt", "r")
-#for i in f.readlines():
-  #if len(i.strip())>0: noun.append(i.strip())
-#f.close()
+noun = list()
+f = open("nouns.txt", "r")
+for i in f.readlines():
+  if len(i.strip())>0: noun.append(i.strip())
+f.close()
 '''print("Loading Pets... --Data")
 pets = dict()
 try:
@@ -135,8 +135,6 @@ acts = ["eats their family",
         "wants to hunt endangered lolis",
         "is creating a weapon of mass destruction",
         "was once Araragi's math partner",
-        "is actually your nakama",
-        "wants to reach max bond in fate/grand order",
         "reads manga in the bathroom",
         "has a crush on their shut-in sister",
         "listens to renai circulation all day",
@@ -152,8 +150,6 @@ acts = ["eats their family",
         "thinks the world is round",
         "thinks the world  is flat",
         "has many husbandos",
-        "will cage you in Bazuso's room",
-        "hides under Inori's bed",
         "collects anime figures",
         "will eventually date Senjougahara",
         "will become the president of North Korea",
@@ -162,6 +158,8 @@ acts = ["eats their family",
         "trapped in a virtual reality death game",
         "has a harem in a VR game"
         ]
+
+    
     
 serverConfig = dict()
 description = "memes"
@@ -266,11 +264,16 @@ async def repeat(ctx, times: int, content='repeating...'):
 
 
 @bot.command()
+async def echo(ctx, *m: str):
+    await ctx.guild.system_channel.send(" ".join(m))
+
+
+@bot.command()
 async def test(ctx):
     if str(ctx.message.author.id) == "444462879769493536":
-        ctx.send("hi owner :3")
+        await ctx.send("hi owner :3")
     else:
-        ctx.send("zzzzz")
+        await ctx.send("zzzzz")
 
 #non-command push event processing
 @bot.event
@@ -281,9 +284,11 @@ async def on_ready():
     print('------')
     #update presence
     await bot.change_presence(activity=discord.Activity(type=discord.ActivityType.playing,
-                                                    name = "Sleep",
+                                                    name = "with Rilaaa",
                                                     state = "Sleeping",
                                                     details = "Competitive",
+                                                    party = {"id":"ae488379-351d-4a4f-ad32-2b9b01c91657",
+                                                             "size":[1,1]},
                                                     assets = {"large_image":"choco",
                                                               "large_text":"zzzz",
                                                               "small_image":"chocobig",
@@ -291,6 +296,6 @@ async def on_ready():
                                                     ))
     
 #secret token (never push to pornhub **github)
-choco_token = "token_here"
+choco_token = "token here"
 
 bot.run(choco_token)
